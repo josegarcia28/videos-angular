@@ -1,0 +1,38 @@
+<div class="col-md-12 mt-3">
+    <h1>{{page_title}}</h1>
+    <hr>
+    <div class="alert alert-success col-md-5 mt-3" *ngIf="status == 'success'">
+        Video guardado correctamente
+    </div>
+    <div class="alert alert-danger col-md-5 mt-3" *ngIf="status == 'error'">
+        No se han guardado en video
+    </div>
+    <form class="col-md-5 ml-0 pl-0" #videoNewForm="ngForm" (ngSubmit)="onSubmit(videoNewForm)">
+        <div class="form-group">
+            <label for="title">Titulo</label>
+            <input type="text" name="title" #title="ngModel" [(ngModel)]="video.title" class="form-control" required>
+            <small *ngIf="!title.valid && title.touched" class="invalid-feedback d-block">
+                El titulo no es valido
+            </small>
+        </div>
+        <div class="form-group mt-2">
+            <label for="description">Descripcion</label>
+            <textarea type="text" name="description" #description="ngModel" [(ngModel)]="video.description" class="form-control" required ></textarea>
+            <small *ngIf="!description.valid && description.touched" class="invalid-feedback d-block">
+                La descripcion no es valida
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="url">URL</label>
+            <input type="text" name="url" #url="ngModel" [(ngModel)]="video.url" class="form-control"
+                    placeholder="https://example.com"
+                    pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?"
+                    required>
+            <small *ngIf="!url.valid && url.touched" class="invalid-feedback d-block">
+                La URL no es valida
+            </small>
+        </div>
+       
+        <input type="submit" value="Guardar" class="btn btn-success mt-3" [disabled]="videoNewForm.invalid"/>
+    </form>
+</div>

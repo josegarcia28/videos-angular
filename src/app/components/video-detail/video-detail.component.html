@@ -1,0 +1,15 @@
+<div class="d-flex align-items-center mt-4" *ngIf="!video">
+    <strong>Cargando...</strong>
+    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+</div>
+<div class="col-md-12 mt-3" *ngIf="video">
+    <p>
+        <iframe width="700" height="415" [src]="getVideoIframe(video.url)" frameborder="0" 
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </p>    
+    <h3>{{video.title}}</h3>
+    <span class="badge bg-secondary">{{video.user.name+ ' ' +video.user.surname}} </span>
+    <p [innerHTML]="video.description"></p>
+</div>
